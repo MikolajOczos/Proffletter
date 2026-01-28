@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proffletter Writing Pad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+            position: relative; 
+            min-height: auto; 
+        }
+
+        .header-section {
+            background: linear-gradient(135deg, #667eea 0%, #7ca1c8 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .title-box {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        .counter-section {
+            padding: 40px;
+        }
+
+        .counter-section h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #555;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .text-area {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: border-color 0.3s ease;
+            min-height: 200px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .text-area:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .counter-display {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8edf5 100%);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 20px;
+            border: 2px solid #e0e0e0;
+            text-align: center;
+        }
+
+        .counter-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .counter-value {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: #667eea;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            min-height: 50px;
+        }
+
+        .info-box {
+            background: #f9f9f9;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid #7ca1c8;
+        }
+
+        .info-title {
+            color: #333;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .info-text {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .link-to-index {
+            position: fixed; 
+            bottom: 20px; 
+            right: 20px;
+            
+            
+            font-size: 16px;
+            text-decoration: none;
+            color: #7ca1c8;
+            padding: 10px 20px;
+            border: 2px solid #7ca1c8;
+            border-radius: 8px;
+            background: white;
+            transition: background 0.3s ease, color 0.3s ease;
+            box-shadow: 0 4px 12px rgba(124, 161, 200, 0.2);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+
+        .link-to-index:hover {
+            background: #7ca1c8;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(124, 161, 200, 0.3);
+        }
+
+        .characters-container {
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 10px;
+            }
+            
+            .title-box { 
+                font-size: 2.2rem; 
+            }
+            
+            .counter-section { 
+                padding: 30px 20px; 
+            }
+            
+            .counter-section h2 { 
+                font-size: 1.6rem; 
+            }
+            
+            .counter-value { 
+                font-size: 2.5rem; 
+            }
+            
+            .link-to-index {
+                position: fixed; /* Keep it fixed on mobile too */
+                bottom: 15px;
+                right: 15px;
+                margin: 0; /* Remove auto margins */
+                display: block;
+                width: auto;
+            }
+            
+            .container {
+                margin-bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title-box { 
+                font-size: 1.8rem; 
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            .counter-value { 
+                font-size: 2rem; 
+            }
+            
+            .counter-section {
+                padding: 25px 15px;
+            }
+            
+            .link-to-index {
+                bottom: 10px;
+                right: 10px;
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header-section">
+            <h1 class="title-box">Proffletter Writing Pad</h1>
+            <p class="subtitle">Write and track your character count in real-time. Perfect for crafting concise messages and documents.</p>
+        </div>
+        
+        <div class="counter-section">
+            <h2>Character Counter</h2>
+            
+            <div class="form-group">
+                <label for="textInput">Your Text</label>
+                <textarea 
+                    id="textInput" 
+                    class="text-area" 
+                    placeholder="Start typing here... The character count will update automatically."></textarea>
+            </div>
+            
+            <div class="counter-display">
+                <div class="counter-label">Characters</div>
+                <div class="counter-value" id="counter">0</div>
+            </div>
+            
+            <div class="info-box">
+                <div class="info-title">Usage Tips</div>
+                <div class="info-text">
+                    This tool helps you keep track of character count for various purposes: social media posts, emails, documents, or any text where length matters. The counter updates in real-time as you type, delete, or modify your text.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="link-to-index" href="{% url 'index' %}">Document Counter</a>
+
+    <script>
+        
+        const textInput = document.getElementById('textInput');
+        const counter = document.getElementById('counter');
+        
+        
+        function updateCounter() {
+            const text = textInput.value;
+            const count = text.length;
+            counter.textContent = count;
+            
+            
+            if (count > 500) {
+                counter.style.color = '#ff9800';
+            } else if (count > 1000) {
+                counter.style.color = '#f44336';
+            } else {
+                counter.style.color = '#667eea';
+            }
+        }
+        
+        
+        textInput.addEventListener('input', updateCounter);
+        
+        
+        textInput.addEventListener('paste', function() {
+            
+            setTimeout(updateCounter, 0);
+        });
+        
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCounter();
+            
+        
+            setTimeout(function() {
+                
+                const container = document.querySelector('.container');
+                const body = document.body;
+                
+                if (container.offsetHeight > window.innerHeight - 100) {
+                    body.style.paddingBottom = '80px';
+                }
+            }, 100);
+        });
+        
+        
+        textInput.addEventListener('keyup', updateCounter);
+    </script>
+</body>
+</html>

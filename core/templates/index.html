@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Proffletter</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #eef1f5 0%, #d7dde8 100%);
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+}
+
+/* Title */
+.top_text {
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    color: #4a4f63;
+    margin-bottom: 20px;
+}
+
+/* Buttons bottom right */
+.bottom-right-link {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #7ca1c8;
+    padding: 8px 16px;
+    border: 1px solid #7ca1c8;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(124, 161, 200, 0.2);
+}
+
+.bottom-right-link:hover {
+    background: #7ca1c8;
+    color: white;
+}
+
+/* Officializer button */
+.officializer-btn {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #7ca1c8;
+    padding: 8px 16px;
+    border: 1px solid #7ca1c8;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(124, 161, 200, 0.2);
+    z-index: 9999;
+}
+
+.officializer-btn:hover {
+    background: #7ca1c8;
+    color: white;
+}
+
+/* Upload box */
+.upload-box {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    width: 420px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+    text-align: center;
+}
+
+.upload-box img {
+    width: 90px;
+    margin-bottom: 25px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.upload-box h2 {
+    margin: 0 0 20px;
+    color: #4a4f63;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* File input */
+.file-input {
+    background: #f8f9fa;
+    padding: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    border: 2px dashed #cfd6e3;
+    display: block;
+    transition: all 0.3s ease;
+    color: #666;
+}
+
+.file-input:hover {
+    background: #eef1f7;
+    border-color: #8fa3d8;
+}
+
+.file-name {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #666;
+    min-height: 20px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+/* Upload button */
+.upload-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #8fa3d8 0%, #a7b8e6 100%);
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+.upload-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(143, 163, 216, 0.3);
+}
+
+/* Clear button */
+.clear-btn {
+    width: 100%;
+    padding: 14px;
+    background: #dc3545;
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    margin-top: 15px;
+}
+
+.clear-btn:hover {
+    background: #c82333;
+}
+
+/* Messages */
+.messages {
+    margin-bottom: 20px;
+}
+
+.message {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Character counter button (unchanged layout, only colors) */
+.link-to-indextype {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    font-size: 16px;
+    text-decoration: none;
+    color: #7ca1c8;
+    padding: 8px 16px;
+    border: 1px solid #7ca1c8;
+    border-radius: 10px;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(124, 161, 200, 0.2);
+}
+
+.link-to-indextype:hover {
+    background: #7ca1c8;
+    color: white;
+}
+
+/* Feedback note */
+#feedback-note {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    color: #444;
+    border: 1px solid #e5e5e5;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#feedback-note.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#feedback-note:hover {
+    background: #f7f7ff;
+    border-color: #c7c7ff;
+}
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="top_text">Proffletter</p>
+        
+        {% if messages %}
+        <div class="messages" style="width: 420px;">
+            {% for message in messages %}
+            <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                {{ message }}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="upload-box">
+            <img src="/static/upload.jpg" alt="Upload Logo"> 
+            <h2>Upload Your Letter</h2>
+            
+            
+            <form method="POST" enctype="multipart/form-data" id="uploadForm" action="{% url 'upload_file' %}">
+                {% csrf_token %}
+                
+                <label class="file-input" for="document">
+                    <span id="fileLabel">Click to select a file</span>
+                    <input type="file" name="document" id="document" accept=".pdf,.doc,.docx,.txt">
+                </label>
+                
+                <div class="file-name" id="fileName">
+                    {% if uploaded_file_name %}
+                        Currently uploaded: {{ uploaded_file_name }}
+                    {% endif %}
+                </div>
+                
+                <button type="submit" class="upload-btn">Upload File</button>
+            </form>
+            
+            
+            {% if uploaded_file_name %}
+            <form method="POST" action="{% url 'clear_doc' %}" id="clearForm">
+                {% csrf_token %}
+                <button type="submit" class="clear-btn">Clear Uploaded File</button>
+            </form>
+
+            {% endif %}
+                            {% if character_count is not None %}
+                <div style="margin-top: 20px; padding: 15px; background: #e8f4fd; border-radius: 8px;">
+                    <h3 style="margin-top: 0; color: #0056b3;">File Analysis Results</h3>
+                    <p><strong>File:</strong> {{ uploaded_file_name }}</p>
+                    <p><strong>Total characters:</strong> {{ character_count }}</p>
+                    
+                    {% if character_count == 0 %}
+                    <p style="color: #666;"><em>Note: Character counting is only available for .txt files currently.</em></p>
+                    {% endif %}
+                </div>
+                {% endif %}
+        </div>
+        <a class="officializer-btn" href="{% url 'officializer' %}">AI Based Text Officializer™</a>
+        <a href="{% url 'contact' %}" class="bottom-right-link">Contact and Author Page</a>
+        <a href= "{% url 'indextype' %}"class = "link-to-indextype">Writing Pad Character Counter</a>
+    </div>
+    
+    <script>
+        
+        document.getElementById('document').addEventListener('change', function(e) {
+            const fileName = e.target.files[0] ? e.target.files[0].name : 'No file selected';
+            document.getElementById('fileLabel').textContent = fileName;
+            document.getElementById('fileName').textContent = `Selected: ${fileName}`;
+        });
+        
+        
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            const fileInput = document.getElementById('document');
+            if (!fileInput.files.length) {
+                e.preventDefault();
+                alert('Please select a file first!');
+                return false;
+            }
+            
+            const file = fileInput.files[0];
+            const maxSize = 10 * 1024 * 1024; 
+            
+            if (file.size > maxSize) {
+                e.preventDefault();
+                alert('File is too large! Maximum size is 10MB.');
+                return false;
+            }
+            
+            
+            const submitBtn = document.querySelector('.upload-btn');
+            submitBtn.textContent = 'Uploading...';
+            submitBtn.disabled = true;
+        });
+        
+        
+        document.getElementById('clearForm')?.addEventListener('submit', function(e) {
+            if (!confirm('Are you sure you want to clear the uploaded file?')) {
+                e.preventDefault();
+            }
+        });
+        document.addEventListener("DOMContentLoaded", () => { const note = document.getElementById("feedback-note"); setTimeout(() => { note.classList.add("show"); }, 1200); note.addEventListener("click", () => { note.classList.remove("show"); }); window.addEventListener("scroll", () => { note.classList.remove("show"); }); });
+
+    </script>
+<div id="feedback-note"> 😊 If you found this website useful, feel free to leave a good opinion! </div>
+</body>
+</html>

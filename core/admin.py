@@ -1,0 +1,4 @@
+from django.contrib import admin
+
+# Register your models here.
+## MEDIA STATIC STUFF FOR FRONT END AND STORE THE DOCUMENTS DO SOME VALIDATION STUFF (5 OR 6 LIBRARIES HANDLE IT PODOBNO) 
