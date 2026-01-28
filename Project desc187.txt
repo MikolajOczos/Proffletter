@@ -1,5 +1,0 @@
-Proffletter lets you simply make your texts sound more on point! You dont have to worry about using informal words or making grammar mistakes. ProText will point them out for you, rest assured. Besides that it can modify your document to make it match certain characteristics of a writing. More formal? You got it. Kinder? Ruder? More proffesional? All that within just a few clicks. We operate in Polish and English. Try out Proffleter and see how easy comming up with a proper document can be.           
-
-
-User Story 1 :
-A student of a certain field needs to change his field of study to another one because of personal reasons. He always struggled with writing formal documetns. He tries to make it sound formal but he still feels like it sounds like an sms to a colleague instead of a letter to uni represenative. Then he stumbles upon ProText, gives it a try and feels relieved. He sends the text and feels confident that he will be taken seriously. He might have learned some grammar rules as well with the process. Perhaps he will reccomend to his friends next day at University :-)
